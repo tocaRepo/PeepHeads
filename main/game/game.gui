@@ -1,0 +1,182 @@
+script: "/main/game/game.gui_script"
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+textures {
+  name: "main"
+  texture: "/main/main.atlas"
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  inherit_alpha: true
+  clipping_visible: false
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 125.0
+    y: 193.0
+  }
+  size {
+    x: 300.0
+    y: 400.0
+  }
+  color {
+    x: 0.52
+    z: 0.52
+  }
+  type: TYPE_BOX
+  id: "correct"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 1193.0
+    y: 193.0
+  }
+  size {
+    x: 300.0
+    y: 400.0
+  }
+  color {
+    x: 0.906
+    y: 0.249
+    z: 0.471
+  }
+  type: TYPE_BOX
+  id: "wrong"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 657.0
+    y: 557.0
+  }
+  scale {
+    x: 7.0
+    y: 7.0
+  }
+  size {
+    x: 140.0
+    y: 50.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ADD
+  text: "word"
+  font: "default"
+  id: "word"
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 664.0
+    y: 163.0
+  }
+  scale {
+    x: 6.0
+    y: 6.0
+  }
+  size {
+    x: 50.0
+    y: 50.0
+  }
+  color {
+    x: 0.83
+    y: 0.262
+    z: 0.262
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ADD
+  text: "60"
+  font: "default"
+  id: "timer"
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 305.0
+    y: 326.0
+  }
+  scale {
+    x: 3.0
+    y: 3.0
+  }
+  size {
+    x: 200.0
+    y: 30.0
+  }
+  color {
+    x: 0.6
+    y: 0.8
+    z: 0.6
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ADD
+  text: "word\n"
+  ""
+  font: "default"
+  id: "correct_words"
+  parent: "root"
+  inherit_alpha: true
+  enabled: false
+}
+nodes {
+  position {
+    x: 1224.0
+    y: 661.0
+  }
+  scale {
+    x: 0.8
+    y: 0.8
+  }
+  type: TYPE_BOX
+  texture: "main/exit"
+  id: "exit"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 995.0
+    y: 326.0
+  }
+  scale {
+    x: 3.0
+    y: 3.0
+  }
+  size {
+    x: 200.0
+    y: 30.0
+  }
+  color {
+    x: 0.902
+    y: 0.302
+    z: 0.302
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ADD
+  text: "word\n"
+  ""
+  font: "default"
+  id: "wrong_words"
+  parent: "root"
+  inherit_alpha: true
+  enabled: false
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

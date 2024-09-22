@@ -1,0 +1,17 @@
+local monarch = require "monarch.monarch"
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
+	msg.post("#", "splash")
+end
+
+function on_input(self, action_id, action)
+
+	if action_id == hash("touch") and action.pressed then
+		print("Touch!")
+		monarch.show(hash("menu"))
+		monarch.unload(hash("splash"))
+
+	end
+end

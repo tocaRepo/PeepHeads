@@ -1,0 +1,126 @@
+script: "/main/menu/menu.gui_script"
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 648.0
+    y: 297.0
+  }
+  scale {
+    x: 1.739922
+    y: 1.626155
+    z: 2.08
+  }
+  size {
+    x: 200.0
+    y: 75.0
+  }
+  color {
+    x: 0.736
+    z: 0.865
+  }
+  type: TYPE_BOX
+  id: "start_button"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 2.0
+    y: 2.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "Play"
+  font: "default"
+  id: "start_button_label"
+  outline {
+    x: 0.8
+    y: 0.8
+    z: 0.8
+  }
+  parent: "start_button"
+  inherit_alpha: true
+  outline_alpha: 0.1
+  shadow_alpha: 0.0
+}
+nodes {
+  position {
+    x: 659.0
+    y: 501.0
+  }
+  scale {
+    x: 6.0
+    y: 6.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.949
+    y: 0.949
+    z: 0.949
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ADD
+  text: "Heads Up"
+  font: "default"
+  id: "title_text"
+  yanchor: YANCHOR_TOP
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 841.0
+    y: 446.0
+  }
+  rotation {
+    z: 25.241
+  }
+  scale {
+    x: 2.3
+    y: 2.5
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.868
+    y: 0.0
+    z: 0.868
+  }
+  type: TYPE_TEXT
+  text: "Peep show edition"
+  font: "default"
+  id: "description"
+  parent: "root"
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

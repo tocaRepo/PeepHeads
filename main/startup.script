@@ -1,0 +1,13 @@
+local monarch = require "monarch.monarch"
+
+
+function init(self)
+	msg.post("#", "splash")
+end
+
+function on_message(self, message_id, message, sender)
+	
+	if message_id == hash("splash") then
+		monarch.show(hash("splash"))
+	end
+end

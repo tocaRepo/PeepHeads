@@ -1,0 +1,3 @@
+adb push D:\larger_download\Defold-x86_64-win32\universal-android\PeepHeads\PeepHeads.apk /data/local/tmp/
+adb shell pm install /data/local/tmp/PeepHeads.apk
+

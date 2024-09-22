@@ -1,0 +1,44 @@
+local monarch = require "monarch.monarch"
+local druid = require("druid.druid")
+local function start ()
+    print("start")
+    monarch.show(hash("game"))
+    monarch.unload(hash("menu"))
+
+
+end
+
+
+function init(self)
+    print("init")
+    msg.post(".", "acquire_input_focus")
+    self.druid = druid.new(self)
+    self.button_menu = self.druid:new_button("start_button", start)
+    -- Get the text node (make sure to use the correct node ID)
+    self.description = gui.get_node("description")
+
+    -- Start the pulsating animation
+    gui.animate(self.description, "scale", vmath.vector3(2.5, 2.5, 1), gui.EASING_OUTBOUNCE, 1.5, 0, function()
+        gui.animate(self.description, "scale", vmath.vector3(2.1, 2.1, 1), gui.EASING_OUTBOUNCE, 1.2, 0, function()
+            gui.animate(self.description, "scale", vmath.vector3(2.3, 2.3, 1), gui.EASING_OUTBOUNCE, 1.8, 0, function()
+            end)
+        end)
+    end)
+    --self.title_text = self.druid:new_text("title_text")
+    sound.play("music#sound", {delay = 0, gain = 0.2, pan = -1.0, speed = 1})
+    
+end
+
+function final(self)
+    self.druid:final()
+end
+
+
+function on_message(self, message_id, message, sender)
+    self.druid:on_message(message_id, message, sender)
+end
+
+
+function on_input(self, action_id, action)
+    return self.druid:on_input(action_id, action)
+end
