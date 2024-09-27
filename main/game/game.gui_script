@@ -1,10 +1,10 @@
 local monarch = require "monarch.monarch"
 local druid = require("druid.druid")
-local sqlite_module = require "main.modules.database"
+local CrisisDB = require "main.modules.crisisdb"
 local timer = require("druid.extended.timer")  -- Register the extended timer component
 
 -- Local constants
-local WORD_LIMIT = 10
+local WORD_LIMIT = 15
 local TIMER_DURATION = 60
 
 -- Forward declare variables
@@ -12,10 +12,12 @@ local words
 
 -- Callback functions
 local function display_next_word(self)
-    if words and #words > 0 and self.word_counter < #words then
-        self.text_component:set_to(words[self.word_counter].word)
+    if words and #words > 0 and self.word_counter+1 <= #words then
         self.word_counter = self.word_counter + 1
-    else
+        self.text_component:set_to(words[self.word_counter].data.word)
+        
+    else 
+        
         self.text_component:set_to("Score: " .. self.score)
         self.correct_words_text = self.druid:new_text("correct_words")
         self.correct_words_text:set_to(self.correct_words)
@@ -32,16 +34,17 @@ local function display_next_word(self)
         self.timer_component:set_state(false)
         print("Disabling timer and hiding it...")
         gui.set_enabled(gui.get_node("timer"), false)
+     
     end
 end
 
 local function on_wrong_button_click(self)
     print("WRONG")
     if self.wrong_words_formatting == 0 then
-        self.wrong_words = self.wrong_words .. words[self.word_counter].word .. ", "
+        self.wrong_words = self.wrong_words .. words[self.word_counter].data.word .. ", "
         self.wrong_words_formatting=1
     else
-        self.wrong_words = self.wrong_words .. words[self.word_counter].word .. "\n"
+        self.wrong_words = self.wrong_words .. words[self.word_counter].data.word .. "\n"
         self.wrong_words_formatting=0
     end
     display_next_word(self)
@@ -55,12 +58,13 @@ local function on_correct_button_click(self)
     print("CORRECT")
 
     if self.correct_words_formatting == 0 then
-        self.correct_words = self.correct_words .. words[self.word_counter].word .. ", "
+        self.correct_words = self.correct_words .. words[self.word_counter].data.word .. ", "
         self.correct_words_formatting=1
     else
-        self.correct_words = self.correct_words .. words[self.word_counter].word .. "\n"
+        self.correct_words = self.correct_words .. words[self.word_counter].data.word .. "\n"
         self.correct_words_formatting=0
     end
+    print(words[self.word_counter].data.word)
     self.score = self.score + 1
     display_next_word(self)
    
@@ -95,14 +99,25 @@ end
 
 -- Utility function to load 10 random words from the database
 local function load_words()
-    local db_path = "assets/db/headsp.db"
-    sqlite_module.open_db(db_path)
 
+
+    -- Load or retrieve data
+    CrisisDB.init("/assets/data/")
+    local data = CrisisDB.fetch_random_elements("words.json",WORD_LIMIT)
+
+    if data then
+        print("Data loaded:", json.encode(data))
+        print(data.rows[2].data.word)
+        words = data.rows
+        
+    else
+        print("No data found, starting fresh.")
+    end
+
+   
     -- Fetch 10 random words from the database
-    local query = string.format("SELECT * FROM words ORDER BY RANDOM() LIMIT %d;", WORD_LIMIT)
-    words = sqlite_module.get_words(query)
-
-    sqlite_module.close_db()
+    
+   
 end
 
 -- Initialization
@@ -131,7 +146,7 @@ function init(self)
     
     -- Set the first word in the GUI text node
     self.text_component = self.druid:new_text("word")
-    display_next_word(self)
+    self.text_component:set_to(words[self.word_counter].data.word)
 
     -- Initialize the timer
     local timer_node = gui.get_node("timer")

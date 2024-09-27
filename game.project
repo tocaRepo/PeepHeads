@@ -1,9 +1,9 @@
 [project]
 title = PeepHeads
-bundle_resources = headsp.db
+bundle_resources = 
+custom_resources = /assets/data/
 dependencies#0 = https://github.com/britzl/monarch/archive/refs/tags/5.1.1.zip
 dependencies#1 = https://github.com/Insality/druid/archive/refs/tags/0.11.0.zip
-dependencies#2 = https://github.com/dlannan/defold-sqlite3/archive/refs/heads/main.zip
 
 [bootstrap]
 main_collection = /main/screens.collectionc
@@ -41,6 +41,8 @@ app_icon_96x96 = /assets/app_icons/icon_96.png
 app_icon_144x144 = /assets/app_icons/icon_144.png
 app_icon_192x192 = /assets/app_icons/icon_192.png
 input_method = HiddenInputField
+package = com.peepshow.game
+immersive_mode = 1
 
 [script]
 shared_state = 1

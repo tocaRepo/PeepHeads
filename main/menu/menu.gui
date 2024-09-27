@@ -1,7 +1,11 @@
 script: "/main/menu/menu.gui_script"
 fonts {
   name: "default"
-  font: "/builtins/fonts/default.font"
+  font: "/assets/default.font"
+}
+textures {
+  name: "main"
+  texture: "/main/main.atlas"
 }
 nodes {
   size {
@@ -14,6 +18,19 @@ nodes {
   inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
   visible: false
+}
+nodes {
+  position {
+    x: 639.0
+    y: 454.0
+  }
+  type: TYPE_BOX
+  texture: "main/background_peep_2"
+  id: "box"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
@@ -35,6 +52,7 @@ nodes {
   }
   type: TYPE_BOX
   id: "start_button"
+  adjust_mode: ADJUST_MODE_STRETCH
   parent: "root"
   inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
@@ -62,6 +80,7 @@ nodes {
     y: 0.8
     z: 0.8
   }
+  adjust_mode: ADJUST_MODE_STRETCH
   parent: "start_button"
   inherit_alpha: true
   outline_alpha: 0.1
@@ -91,6 +110,7 @@ nodes {
   font: "default"
   id: "title_text"
   yanchor: YANCHOR_TOP
+  adjust_mode: ADJUST_MODE_STRETCH
   parent: "root"
   inherit_alpha: true
 }
@@ -116,9 +136,10 @@ nodes {
     z: 0.868
   }
   type: TYPE_TEXT
-  text: "Peep show edition"
+  text: "Wife edition"
   font: "default"
   id: "description"
+  adjust_mode: ADJUST_MODE_STRETCH
   parent: "root"
   inherit_alpha: true
 }
